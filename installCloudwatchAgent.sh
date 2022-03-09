@@ -4,12 +4,13 @@ wget https://s3.amazonaws.com/amazoncloudwatch-agent/amazon_linux/amd64/latest/a
 rpm -U ./amazon-cloudwatch-agent.rpm
 echo '{
    "metrics":{
+      "namespace": "LinuxServer",
       "metrics_collected":{
          "mem":{
             "measurement":[
                "mem_used_percent"
             ],
-            "metrics_collection_interval":30
+            "metrics_collection_interval":5
          }
       },
       "append_dimensions":{
