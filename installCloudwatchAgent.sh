@@ -2,8 +2,7 @@
 cd /tmp
 wget https://s3.amazonaws.com/amazoncloudwatch-agent/amazon_linux/amd64/latest/amazon-cloudwatch-agent.rpm
 rpm -U ./amazon-cloudwatch-agent.rpm
-cat << EOF >  /opt/aws/amazon-cloudwatch-agent/bin/config.json
-{
+echo '{
    "metrics":{
       "metrics_collected":{
          "mem":{
@@ -17,7 +16,6 @@ cat << EOF >  /opt/aws/amazon-cloudwatch-agent/bin/config.json
          "InstanceId": "${aws:InstanceId}"
       }
    }
-}
-EOF
+} ' >  /opt/aws/amazon-cloudwatch-agent/bin/config.json
 /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c file:/opt/aws/amazon-cloudwatch-agent/bin/config.json -s
 systemctl enable amazon-cloudwatch-agent
