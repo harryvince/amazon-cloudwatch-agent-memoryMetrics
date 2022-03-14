@@ -3,7 +3,7 @@ cd /tmp
 wget https://s3.amazonaws.com/amazoncloudwatch-agent/amazon_linux/amd64/latest/amazon-cloudwatch-agent.rpm
 rpm -U ./amazon-cloudwatch-agent.rpm
 context="export PROMPT_COMMAND=""'"'RETRN_VAL=$?;logger -p local6.debug "$(whoami) [$$]: $(history 1 | sed "s/[ ][0–9]+[ ]//" ) [$RETRN_VAL]"'"'"
-echo $context > /etc/bashrc
+echo $context >> /etc/bashrc
 source /etc/bashrc
 echo 'local6.* /var/log/commands.log' > /etc/rsyslog.d/bash.conf
 echo '/var/log/commands.log' > /etc/logrotate.d/rsyslog
